@@ -1,0 +1,74 @@
+<div class="mx-auto max-w-[450px]">
+  <div class="h-full bg-gray-50">
+    <div class="rounded-b-xl bg-red-700 p-5 pb-44 text-white"><br><br>
+      <center><span style="margin-left:27px;" class="text-center text-3xl font-bold">Carikit</span>
+        <br><span class="text-center font-semibold">Rumah Sakit di Kalimantan Selatan</span></center>
+        <center><img style="margin-right:130px;margin-top:-66px;" src="assets/img/logo.png" width="44px"></center>
+    </div><br>
+    <div x-data="startSearch()" x-init="fetchRumahSakit()">
+    <div class="-mt-40 p-5">
+        <div class="rounded-xl bg-white p-4 font-medium text-slate-500 shadow-sm">
+          <div class="mb-3 text-sm">Kabupaten</div>
+          
+            <select name="dataSearch" x-model="dataSearch" class="form-select appearance-none
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding bg-no-repeat
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+          <option selected="">Pilih Kabupaten</option>
+          <option value="6372">Kota Banjarbaru</option>
+          <option value="6371">Kota Banjarmasin</option>
+          <option value="6303">Kab. Banjar</option>
+          <option value="6301">Kab. Tanah Laut</option>
+          <option value="6302">Kab. Kotabaru</option>
+          <option value="6304">Kab. Barito Kuala</option>
+          <option value="6305">Kab. Tapin</option>
+          <option value="6306">Kab. Hulu Sungai Selatan</option>
+          <option value="6307">Kab. Hulu Sungai Tengah</option>
+          <option value="6308">Kab. Hulu Sungai Utara</option>
+          <option value="6309">Kab. Tabalong</option>
+          <option value="6310">Kab. Tanah Bumbu</option>
+          <option value="6311">Kab. Balangan</option>
+      </select><br>
+          <button  @click="fetchRumahSakit()" class="flex w-full items-center justify-center rounded-lg bg-red-700 py-4 px-5 font-medium tracking-wide text-white text-opacity-90 shadow-slate-100 hover:shadow-lg">
+            <span class="mr-2">Cari</span>
+            
+          </button><br>
+        </div>
+      </div>
+
+    <section  class="p-5">
+      <div class="mb-5 flex items-center justify-between">
+        <h4 class="font-medium text-slate-500">Rumah Sakit</h4>
+        
+      </div>
+      <div class="space-y-2">
+        <template x-for="abilityObj in dataRumahSakit.hospitals" :key="abilityObj.id">
+        <div  class="flex space-x-3 rounded-xl bg-white p-3 shadow-sm">
+          
+          <div>
+            <h3 x-text="abilityObj.name" class="font-semibold text-gray-600"></h3>
+            <p x-text="abilityObj.address" class="text-sm text-slate-400"></p>
+            <template x-for="kamar in abilityObj.available_beds" :key="kamar.available">
+              <p style="font-size:12px;" class="inline-block py-1 px-2 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-600 text-white rounded">Tersedia <span x-text="kamar.available"></span> Kamar</p>
+            </template>
+          </div>
+          
+        </div>
+    </template>
+    </section>
+
+   
+  </div>
+  </div>
+</div>
